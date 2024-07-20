@@ -106,64 +106,101 @@ export function Home() {
   return (
     <ParentDiv>
       <WorldImg src="src/Components/Home/svet.png" />
-      <h1
+      <div
         style={{
-          color: "rgb(136, 8, 8)",
-          fontSize: "40px",
-          fontWeight: "lighter",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "0px",
         }}
       >
-        USA Stats
-      </h1>
-      <StyledGrid container>
-        {usaStats.length > 0 ? (
-          <>
-            <StyledCard
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                backgroundColor: "red",
-              }}
-            >
-              <CardContent>
-                <Typography
-                  variant="h6"
+        <h1
+          style={{
+            color: "rgb(136, 8, 8)",
+            fontSize: "40px",
+            fontWeight: "lighter",
+          }}
+        >
+          World Stats
+        </h1>
+        <StyledGrid container style={{ paddingBottom: "800px" }}>
+          {
+            <>
+              <StyledCard>
+                <CardContent
                   style={{
-                    fontWeight: "bolder",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "70%",
                   }}
                 >
-                  <h3>Recovered:</h3> {usaData.cases?.recovered || "N/A"}
-                </Typography>
-              </CardContent>
-            </StyledCard>
-            <StyledCard>
-              <CardContent>
-                <h3>Deaths:</h3>
-                <Typography variant="h6" style={{ fontWeight: "bolder" }}>
-                  {usaData.deaths?.total || "N/A"}
-                </Typography>
-              </CardContent>
-            </StyledCard>
-            <StyledCard>
-              <CardContent>
-                <h3>Active Cases:</h3>
-                <Typography variant="h6" style={{ fontWeight: "bolder" }}>
-                  {usaData.cases?.active || "N/A"}
-                </Typography>
-              </CardContent>
-            </StyledCard>
-            <StyledCard>
-              <CardContent>
-                <h3>Country Stats</h3>
-              </CardContent>
-            </StyledCard>
-          </>
-        ) : (
-          <Typography>No data available for USA</Typography>
-        )}
-      </StyledGrid>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    <h3>Recovered:</h3>{" "}
+                    <p style={{ color: "green" }}>
+                      {usaData.cases?.recovered || "N/A"}
+                    </p>
+                  </Typography>
+                </CardContent>
+              </StyledCard>
+              <StyledCard>
+                <CardContent
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "70%",
+                  }}
+                >
+                  <Typography variant="h6" style={{ fontWeight: "bolder" }}>
+                    <h3>Deaths:</h3>
+                    <p style={{ color: "red" }}>
+                      {usaData.deaths?.total || "N/A"}
+                    </p>
+                  </Typography>
+                </CardContent>
+              </StyledCard>
+              <StyledCard>
+                <CardContent
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "70%",
+                  }}
+                >
+                  <Typography variant="h6" style={{ fontWeight: "bolder" }}>
+                    <h3>Active Cases:</h3>
+                    <p style={{ color: "blue" }}>
+                      {usaData.cases?.active || "N/A"}
+                    </p>
+                  </Typography>
+                </CardContent>
+              </StyledCard>
+              <StyledCard>
+                <CardContent
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "70%",
+                  }}
+                >
+                  <h3 style={{ fontWeight: "bolder", fontSize: "25px" }}>
+                    Country Stats
+                  </h3>
+                </CardContent>
+              </StyledCard>
+            </>
+          }
+        </StyledGrid>
+      </div>
     </ParentDiv>
   )
 }

@@ -34,5 +34,4 @@ body{
   width: 100%;
   font-family: 'Open Sans', sans-serif;
 }
-
 `

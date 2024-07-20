@@ -23,13 +23,13 @@ export const StyledGrid = styled(Grid)(({ theme }) => ({
 }))
 
 export const StyledCard = styled(Card)(({ theme }) => ({
-  width: 350,
+  width: 280,
   height: 150,
   borderRadius: 10,
   border: "1px solid black",
-  margin: theme.spacing(5),
+  margin: theme.spacing(3),
   position: "relative",
-  paddingTop: theme.spacing(8),
+  paddingTop: theme.spacing(1),
   transition: "transform 0.3s ease-in-out",
   overflow: "visible",
   "&:hover": {
