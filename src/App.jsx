@@ -3,7 +3,6 @@ import { Routes } from "react-router-dom"
 import { createGlobalStyle } from "styled-components"
 import NavBar from "./Components/NavBar/NavBar"
 import Footer from "./Components/Footer/Footer"
-
 import { Home } from "./Components/Home/Home"
 import { CovidStats } from "./Components/CovidStats/CovidStats"
 import { AboutUs } from "./Components/AboutUs/AboutUs"
