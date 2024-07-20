@@ -41,9 +41,16 @@ export async function FetchCountry() {
   }
 }
 
-export async function FetchStatistic() {
+export async function FetchStatistic({country}) {
   try {
-    const response = await axios.request(statistic)
+    const response = await axios.get(`https://covid-193.p.rapidapi.com/statistics?country=${country}`,
+      {
+        headers: {
+          "x-rapidapi-key": "7cdf079073mshacc4f77771a71cap1f6996jsnabcfd5a437bf",
+          "x-rapidapi-host": "covid-193.p.rapidapi.com",
+        }
+      }
+    )
     console.log(`Statistic`, response.data)
     return response.data
   } catch (error) {
