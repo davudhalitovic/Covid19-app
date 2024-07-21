@@ -6,6 +6,7 @@ export const ParentDiv = styled("div")`
   justify-content: center;
   align-items: center;
   padding-bottom: 40px;
+  margin-top: 5rem;
 `
 
 export const StyledIcon = styled("div")`
