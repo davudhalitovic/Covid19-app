@@ -32,8 +32,8 @@ export const CasesDiv = styled("div")`
     justify-content: center;
     align-items: center;
     margin: 0.3rem;
-    width: 200px;
+    width: 180px;
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `

@@ -1,1 +1,5 @@
-export function AboutUs() {}
+export function AboutUs() {
+    <>
+    
+    </>
+}
