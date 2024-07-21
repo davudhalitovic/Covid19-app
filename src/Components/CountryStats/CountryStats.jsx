@@ -11,6 +11,7 @@ export function CountryStats() {
   const [covidData, setCovidData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
 
   // Fetch all countries and their flags
   useEffect(() => {
@@ -75,29 +76,42 @@ export function CountryStats() {
   return (
     <>
       <App>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={flags}
-          getOptionLabel={(option) => option.name.common}
-          sx={{ width: 300 }}
-          onChange={(event, newValue) => {
-            setSelectedCountry(newValue);
-          }}
-          renderOption={(props, option) => (
-            <li {...props} style={{ display: 'flex', alignItems: 'center' }}>
-              <img
-                src={option.flags.png}
-                style={{ width: 24, height: 16, marginRight: 8 }}
-                alt={`${option.name.common} flag`}
-              />
-              {option.name.common}
-              <br />
-              <p>({option.cioc})</p>
-            </li>
-          )}
-          renderInput={(params) => <TextField {...params} label="Country" />}
-        />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={flags}
+            getOptionLabel={(option) => option.name.common}
+            sx={{ width: 300 }}
+            onChange={(event, newValue) => {
+              setSelectedCountry(newValue);
+            }}
+            renderOption={(props, option) => (
+              <li {...props} style={{ display: 'flex', alignItems: 'center' }}>
+                <img
+                  src={option.flags.png}
+                  style={{ width: 24, height: 16, marginRight: 8 }}
+                  alt={`${option.name.common} flag`}
+                />
+                {option.name.common}
+                <br />
+                <p>({option.cioc})</p>
+              </li>
+            )}
+            renderInput={(params) => <TextField {...params} label="Country" />}
+          />
+          <TextField
+            id="date-picker"
+            label="Select Date"
+            type="date"
+            sx={{ width: 220, marginLeft: 2 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+          />
+        </div>
         <InfoDiv>
           <InfoChild>
             {selectedCountry ? (
