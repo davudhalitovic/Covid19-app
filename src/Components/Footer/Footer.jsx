@@ -29,36 +29,9 @@ export default function Footer() {
           gap: "60px",
         }}
       >
-        <Link
-          to="/covid-stats"
-          style={{
-            textDecoration: "none",
-            color: "black",
-            fontWeight: "bolder",
-          }}
-        >
-          Covid Stats
-        </Link>
-        <Link
-          to="/contry-stats"
-          style={{
-            textDecoration: "none",
-            color: "black",
-            fontWeight: "bolder",
-          }}
-        >
-          Country Stats
-        </Link>
-        <Link
-          to="/about-us"
-          style={{
-            textDecoration: "none",
-            color: "black",
-            fontWeight: "bolder",
-          }}
-        >
-          About us
-        </Link>
+        <StyledLink to="/covid-stats">Covid Stats</StyledLink>
+        <StyledLink to="/contry-stats">Country Stats</StyledLink>
+        <StyledLink to="/about-us">About us</StyledLink>
       </div>
       <br />
       <div>
@@ -67,3 +40,14 @@ export default function Footer() {
     </ParentDiv>
   )
 }
+
+import { styled } from "@mui/material"
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+  &:hover {
+    color: red; /* Promenite boju prilikom hover-a */
+    /* text-decoration: underline; Primer dodavanja podvlačenja */
+  }
+`
