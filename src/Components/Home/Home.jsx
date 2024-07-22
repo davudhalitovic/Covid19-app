@@ -1,7 +1,8 @@
 import { useContext } from "react"
 import { DataContex } from "../../Context/DataConext"
 import { CardContent, Typography } from "@mui/material"
-import { WorldImg, ParentDiv, StyledGrid, StyledCard } from "./HomeStyled"
+import { ParentDiv, StyledGrid, StyledCard } from "./HomeStyled"
+import Worldmap from "./Worldmap"
 
 export function Home() {
   const { stats } = useContext(DataContex)
@@ -11,7 +12,7 @@ export function Home() {
 
   return (
     <ParentDiv>
-      <WorldImg src="src/Components/Home/svet.png" />
+      <Worldmap />
       <div
         style={{
           display: "flex",
