@@ -1,59 +1,60 @@
-import { useEffect, useState } from "react";
-import { App, CasesDiv, InfoChild, InfoDiv } from "./CountryStatsStyled";
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import axios from 'axios';
+import { useEffect, useState } from "react"
+import { App, CasesDiv, InfoChild, InfoDiv } from "./CountryStatsStyled"
+import * as React from "react"
+import TextField from "@mui/material/TextField"
+import Autocomplete from "@mui/material/Autocomplete"
+import axios from "axios"
 
 export function CountryStats() {
-  const [flags, setFlags] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [covidData, setCovidData] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [selectedDate, setSelectedDate] = useState("");
+  const [flags, setFlags] = useState([])
+  const [selectedCountry, setSelectedCountry] = useState(null)
+  const [covidData, setCovidData] = useState({})
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [selectedDate, setSelectedDate] = useState("")
 
   // Fetch all countries and their flags
   useEffect(() => {
     const fetchFlags = async () => {
       try {
-        const response = await axios.get('https://restcountries.com/v3.1/all');
-        setFlags(response.data);
-        console.log(response.data);
+        const response = await axios.get("https://restcountries.com/v3.1/all")
+        setFlags(response.data)
+        console.log(response.data)
       } catch (error) {
-        console.error('Error fetching the flags', error);
+        console.error("Error fetching the flags", error)
       }
-    };
+    }
 
-    fetchFlags();
-  }, []);
+    fetchFlags()
+  }, [])
 
   // Fetch COVID-19 statistics for the selected country
   useEffect(() => {
     if (selectedCountry) {
       const fetchData = async (country) => {
-        setLoading(true);
-        setError(null);
-        setCovidData({});
+        setLoading(true)
+        setError(null)
+        setCovidData({})
 
         const options = {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'x-rapidapi-key': '7cdf079073mshacc4f77771a71cap1f6996jsnabcfd5a437bf',
-            'x-rapidapi-host': 'covid-193.p.rapidapi.com',
+            "x-rapidapi-key":
+              "7cdf079073mshacc4f77771a71cap1f6996jsnabcfd5a437bf",
+            "x-rapidapi-host": "covid-193.p.rapidapi.com",
           },
-        };
+        }
 
         try {
           const response = await fetch(
             `https://covid-193.p.rapidapi.com/statistics?country=${country}`,
             options
-          );
+          )
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error("Network response was not ok")
           }
-          const result = await response.json();
-          const countryData = result.response[0];
+          const result = await response.json()
+          const countryData = result.response[0]
           setCovidData({
             cases: countryData.cases.total,
             todayCases: countryData.cases.new,
@@ -61,22 +62,22 @@ export function CountryStats() {
             todayDeaths: countryData.deaths.new,
             recovered: countryData.recovered,
             active: countryData.cases.active,
-          });
+          })
         } catch (error) {
-          setError(error.message);
+          setError(error.message)
         } finally {
-          setLoading(false);
+          setLoading(false)
         }
-      };
+      }
 
-      fetchData(selectedCountry.name.common);
+      fetchData(selectedCountry.name.common)
     }
-  }, [selectedCountry]);
+  }, [selectedCountry])
 
   return (
-    <>
+    <div>
       <App>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <Autocomplete
             disablePortal
             id="combo-box-demo"
@@ -84,10 +85,10 @@ export function CountryStats() {
             getOptionLabel={(option) => option.name.common}
             sx={{ width: 300 }}
             onChange={(event, newValue) => {
-              setSelectedCountry(newValue);
+              setSelectedCountry(newValue)
             }}
             renderOption={(props, option) => (
-              <li {...props} style={{ display: 'flex', alignItems: 'center' }}>
+              <li {...props} style={{ display: "flex", alignItems: "center" }}>
                 <img
                   src={option.flags.png}
                   style={{ width: 24, height: 16, marginRight: 8 }}
@@ -116,8 +117,14 @@ export function CountryStats() {
           <InfoChild>
             {selectedCountry ? (
               <>
-                <h1 style={{ marginRight: "1rem" }}>{selectedCountry.name.common}</h1>
-                <img src={selectedCountry.flags.png} alt={`${selectedCountry.name.common} flag`} style={{ width: 50, height: 30, marginRight: "1rem" }} />
+                <h1 style={{ marginRight: "1rem" }}>
+                  {selectedCountry.name.common}
+                </h1>
+                <img
+                  src={selectedCountry.flags.png}
+                  alt={`${selectedCountry.name.common} flag`}
+                  style={{ width: 50, height: 30, marginRight: "1rem" }}
+                />
               </>
             ) : (
               <h1>No country selected</h1>
@@ -130,13 +137,24 @@ export function CountryStats() {
             {!loading && !error && selectedCountry && (
               <>
                 <CasesDiv>
-                  <p>{covidData.todayCases === null ? "/" : covidData.todayCases} <br /> New Cases</p>
+                  <p>
+                    {covidData.todayCases === null ? "/" : covidData.todayCases}{" "}
+                    <br /> New Cases
+                  </p>
                 </CasesDiv>
                 <CasesDiv>
-                  <p>{covidData.todayDeaths === null ? "/" : covidData.todayDeaths} <br /> New Deaths</p>
+                  <p>
+                    {covidData.todayDeaths === null
+                      ? "/"
+                      : covidData.todayDeaths}{" "}
+                    <br /> New Deaths
+                  </p>
                 </CasesDiv>
                 <CasesDiv>
-                  <p>{covidData.cases === null ? "/" : covidData.cases} <br /> Total Cases</p>
+                  <p>
+                    {covidData.cases === null ? "/" : covidData.cases} <br />{" "}
+                    Total Cases
+                  </p>
                 </CasesDiv>
               </>
             )}
@@ -146,13 +164,16 @@ export function CountryStats() {
             {!loading && !error && selectedCountry && (
               <>
                 <CasesDiv>
-                  <p>{covidData.deaths === null ? "/" : covidData.deaths} <br /> Total Active</p>
+                  <p>
+                    {covidData.deaths === null ? "/" : covidData.deaths} <br />{" "}
+                    Total Active
+                  </p>
                 </CasesDiv>
               </>
             )}
           </InfoChild>
         </InfoDiv>
       </App>
-    </>
+    </div>
   )
 }
